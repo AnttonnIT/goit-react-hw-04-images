@@ -39,9 +39,6 @@ export function App() {
         errorInfo(error.message);
       } finally {
         setLoader(false);
-        if (page > 1) {
-          scroll();
-        }
       }
     };
 
@@ -77,13 +74,6 @@ export function App() {
 
   const errorInfo = message => {
     toast.error(`Oops, something went wrong: ${message}`);
-  };
-
-  const scroll = () => {
-    window.scrollBy({
-      top: 260 * 2,
-      behavior: 'smooth',
-    });
   };
 
   const showLoadMore = page < Math.ceil(total / 12);
