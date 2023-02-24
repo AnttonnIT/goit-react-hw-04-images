@@ -4,17 +4,16 @@ import { StyledOverlay } from './Modal.styled';
 
 export function Modal({ url, tags, onClose }) {
   useEffect(() => {
+    const handleKeydown = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
     window.addEventListener('keydown', handleKeydown);
     return () => {
       window.removeEventListener('keydown', handleKeydown);
     };
-  });
-
-  const handleKeydown = e => {
-    if (e.code === 'Escape') {
-      onClose();
-    }
-  };
+  }, [onClose]);
 
   const handleOverlayClick = ({ currentTarget, target }) => {
     if (currentTarget !== target) {
